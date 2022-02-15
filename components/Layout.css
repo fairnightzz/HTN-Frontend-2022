@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+
+.nav {
+  @apply bg-panelBackgroundColour shadow p-1 flex flex-row justify-center content-center items-center;
+  @apply dark:bg-gray-800 fixed w-screen h-20 z-20 overflow-x-auto overflow-y-auto;
+}

@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { getEvents } from 'lib/queries';
 import { TEvent } from 'types/event.types';
+import { useState } from 'react';
 
 type eventProps = {
   events: TEvent[]
@@ -8,6 +9,12 @@ type eventProps = {
 
 export default function Home(props: eventProps) {
   const { events } = props;
+  const [filteredEvents, setFilteredEvents] = useState(events);
+
+  const setFilter = () => {
+    setFilteredEvents(events);
+  };
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
@@ -17,9 +24,10 @@ export default function Home(props: eventProps) {
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
         <h1>Hello!</h1>
+        <button type="button" onClick={() => setFilter()}>Set Filter</button>
         <div>
           {
-            events.map((event) => (
+            filteredEvents.map((event) => (
               <p key={event.id}>{event.name}</p>
             ))
           }

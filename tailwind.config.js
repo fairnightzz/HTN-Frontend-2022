@@ -1,10 +1,18 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+const colors = require('tailwindcss/colors');
+
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
+  darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        gray: colors.blueGray,
+      },
+    },
   },
   plugins: [],
 };
