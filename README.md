@@ -1,27 +1,17 @@
-# Next.js + Tailwind CSS Example
+# Zhehai's HTN Frontend 2022 Challenge
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+## Stack and Technologies Used
 
-## Preview
+I decided to use Next.js because it provides the most versatility. I am 
+able to set up my frontend as a progressive web app and easily set up TypeScript support without having to waste time. There is also a ton of internal optimizations such as Image optimization, the option to use SSR, and support for developers such as fast refresh, and analytics.
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+Of course, someone can always implement lazy loading (as I did in one of my projects), 
+but it's never necessary to always reinvent the wheel if there is an easier or supported solution already.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+I decided against using a UI library because UI libraries are very difficult to modify to your liking if the organization design is different. Instead, I'm using Tailwind CSS, which is a utility CSS framework. Moreover, since Tailwind is much more low level compared to UI libraries, it allows for a wider compatibility when it comes to browsers.
 
-## Deploy your own
+## Font choice
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+I felt that it was necessary to include this header because this relates to the issue involving compatibility. Some fonts are not supported on different OS'es, and the same goes for browsers.
+Hence, if the default HTN font I'm using fails, I can fallback on the fonts that Windows (Segoe UI), Mac (apple-system), and Linux (Roboto) can support so it doesn't go to the default Times New Roman.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
