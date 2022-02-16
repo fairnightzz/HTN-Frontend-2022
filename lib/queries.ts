@@ -28,11 +28,12 @@ export const getEvents = async () => {
   return response.data?.sampleEvents;
 };
 
-export const getEvent = async (id: Number) => {
+export const getEvent = async (id: string) => {
+  const idNum: number = +id;
   const response = await client.query({
     query: gql`
       query {
-        sampleEvent (id: Int) {
+        sampleEvent (id: ${idNum}) {
           id
           name
           event_type
@@ -49,8 +50,6 @@ export const getEvent = async (id: Number) => {
           related_events
         }
       }`,
-    variables: { id },
-
   });
-  return response.data;
+  return response.data?.sampleEvent;
 };

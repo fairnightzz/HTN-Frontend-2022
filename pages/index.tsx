@@ -2,6 +2,9 @@ import Head from 'next/head';
 import { getEvents } from 'lib/queries';
 import { TEvent } from 'types/event.types';
 import { useState } from 'react';
+import { SearchIcon } from 'components/Icons';
+
+import EventCard from 'components/EventCard';
 
 type eventProps = {
   events: TEvent[]
@@ -22,13 +25,31 @@ export default function Home(props: eventProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1>Hello!</h1>
-        <button type="button" onClick={() => setFilter()}>Set Filter</button>
-        <div>
+      <main className="flex w-full flex-1 flex-col items-center justify-center">
+        <div className="h-24" />
+        <div className="relative">
+          <input type="search" className="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-lg text-sm focus:outline-none" />
+          <SearchIcon className="text-gray-600 absolute right-0 top-0 mt-2 mr-2" />
+        </div>
+        <div className="relative flex flex-row w-full justify-center">
+          <div className="h-16 items-center">
+            Filter
+          </div>
+          <div className="flex flex-row absolute right-12 inset-y-0 items-center">
+            <div className="title">
+              Sort By:
+            </div>
+            <select className="p-2 m-2 h-10 w-24 border rounded-md">
+              <option value="Most recent">Hi</option>
+              <option value="hi">Hi</option>
+            </select>
+
+          </div>
+        </div>
+        <div className="flex flex-col space-y-4 items-center justify-center">
           {
             filteredEvents.map((event) => (
-              <p key={event.id}>{event.name}</p>
+              <EventCard key={event.id} event={event} />
             ))
           }
         </div>

@@ -17,14 +17,10 @@ code {
 }
 
 .heading {
-  @apply text-xl font-bold;
+  @apply text-xl md:text-3xl font-bold;
 }
 
 .title {
-  @apply text-lg font-semibold;
-}
-
-.header {
   @apply text-lg font-semibold;
 }
 
@@ -39,4 +35,9 @@ code {
 .nav {
   @apply bg-gray-300 shadow p-1 flex flex-row justify-center content-center items-center;
   @apply dark:bg-gray-800 fixed w-screen h-20 z-20 overflow-x-auto overflow-y-auto;
+}
+
+.linkButton {
+  @apply bg-blue-500 text-gray-100 rounded py-2 px-4 hover:bg-blue-600;
+  @apply flex flex-row space-x-2;
 }
