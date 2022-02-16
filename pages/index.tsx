@@ -3,7 +3,7 @@ import { getEvents } from 'lib/queries';
 import { TEvent } from 'types/event.types';
 import { TUserFilters, TSortType, TEventFilter } from 'types/settings.types';
 import React, { useState, useEffect } from 'react';
-import { SearchIcon } from 'components/Icons';
+import { SearchIcon, SadIcon, GithubIcon } from 'components/Icons';
 
 import EventCard from 'components/EventCard';
 
@@ -163,7 +163,7 @@ export default function Home(props: eventProps) {
       <main className="flex w-full flex-col items-center">
         <div className="h-24" />
         <div className="relative">
-          <input type="search" onChange={onSearch} className="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-lg text-sm focus:outline-none" />
+          <input type="search" onChange={onSearch} className="border-2 border-gray-300 bg-white dark:bg-gray-700 h-10 px-5 pr-10 rounded-lg text-sm focus:outline-none" />
           <SearchIcon className="absolute right-0 top-0 mt-2 mr-2" />
         </div>
         <div className="relative flex flex-col lg:flex-row w-full justify-center my-8">
@@ -201,21 +201,33 @@ export default function Home(props: eventProps) {
         </div>
         <div className="flex flex-col space-y-4 items-center justify-center">
           {
-            filteredEvents.map((event) => (
-              <EventCard key={event.id} event={event} loggedIn={loggedIn} />
-            ))
+            filteredEvents.length > 0
+              ? filteredEvents.map((event) => (
+                <EventCard key={event.id} event={event} loggedIn={loggedIn} />
+              ))
+              : (
+                <div className="title items-center">
+                  No event matches your search/filter...
+                  <SadIcon className="w-20 h-20" />
+                </div>
+              )
           }
         </div>
       </main>
 
       <footer className="flex h-24 w-full items-center justify-center border-t bottom-0">
         <a
-          className="flex items-center justify-center"
+          className="flex flex-col items-center justify-center space-y-2"
           href="https://zhehaizhang.com"
           target="_blank"
           rel="noopener noreferrer"
         >
           Made by Zhehai Zhang
+          <div className="flex flex-row">
+            <a href="https://github.com/fairnightzz/HTN-Frontend-2022" target="_blank" rel="noreferrer">
+              <GithubIcon className="w-8 h-8" />
+            </a>
+          </div>
         </a>
       </footer>
     </div>
