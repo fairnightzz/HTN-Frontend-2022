@@ -104,6 +104,9 @@ export default function EventCard(props : EventCardProps) {
                 </button>
               </Link>
             </div>
+            {
+              event.related_events.length > 0
+            && (
             <div className="flex flex-row items-center space-x-2 ml-auto md:visible invisible">
               <div className="title">
                 Related Events:
@@ -119,6 +122,9 @@ export default function EventCard(props : EventCardProps) {
                 ))
               }
             </div>
+            )
+
+            }
           </div>
 
         </div>

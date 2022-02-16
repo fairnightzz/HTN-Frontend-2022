@@ -20,7 +20,7 @@
   @apply font-semibold text-2xl;
 }
 .eventTitle {
-  @apply font-semibold text-2xl
+  @apply font-semibold text-2xl;
 }
 
 .eventBody {

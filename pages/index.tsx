@@ -167,13 +167,13 @@ export default function Home(props: eventProps) {
           <SearchIcon className="absolute right-0 top-0 mt-2 mr-2" />
         </div>
         <div className="relative flex flex-col lg:flex-row w-full justify-center my-8">
-          <div className="flex flex-row items-center justify-center space-x-8 px-4">
+          <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8 px-4 overflow-hidden">
             <div className="title">
               Filters:
             </div>
             {
               eventTypeDisplay.map((eventType, index) => (
-                <label className="" htmlFor={eventType} key={eventType}>
+                <label className="flex items-center justify-center" htmlFor={eventType} key={eventType}>
                   <input checked={filters.filters[index]} onChange={() => updateEventFilter(index)} className="mr-2 leading-right " type="checkbox" id={eventType} />
                   <span className="title">
                     {eventType}
