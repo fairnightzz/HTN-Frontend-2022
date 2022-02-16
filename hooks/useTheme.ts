@@ -14,6 +14,11 @@ export default function useDarkMode() : [string, (theme: string) => void] {
         colorTheme = (addTheme === 'light') ? 'dark' : 'light';
         setTheme(addTheme);
       }
+      if (addTheme === '') {
+        addTheme = 'light';
+        setTheme('light');
+      }
+      console.log(addTheme, colorTheme);
       const root = window.document.documentElement;
       root.classList.remove(colorTheme);
       root.classList.add(addTheme);
