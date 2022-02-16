@@ -40,7 +40,7 @@ export default function EventCard(props : EventCardProps) {
           <div className="flex flex-row space-x-2 items-center">
             {
             event.speakers.map((speaker) => (
-              <>
+              <React.Fragment key={speaker.name}>
                 <p className="font-semibold">
                   Speaker
                   {event.speakers.length > 1 ? 's' : ''}
@@ -48,12 +48,12 @@ export default function EventCard(props : EventCardProps) {
                 </p>
                 {
                   speaker.profile_pic
-                  && <img key={speaker.name} src={speaker.profile_pic} alt="speaker" className="rounded-full w-6 h-6 bg-red-100" />
+                  && <img src={speaker.profile_pic} alt="speaker" className="rounded-full w-6 h-6 bg-red-100" />
                 }
                 <p className="regular">
                   {speaker.name}
                 </p>
-              </>
+              </React.Fragment>
             ))
           }
           </div>
@@ -80,7 +80,7 @@ export default function EventCard(props : EventCardProps) {
               Related Events:
               {
                 event.related_events.map((id) => (
-                  <div>
+                  <div key={id}>
                     { id }
                   </div>
                 ))

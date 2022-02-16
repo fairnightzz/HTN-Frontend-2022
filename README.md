@@ -20,10 +20,12 @@ Eslint is used for good coding style, and Apollo is used for GraphQL queries.
 ## CI/CD
 
 A very basic Github Actions script is set up to auto deploy whenever there is a commit.
+This is also dockerized.
 
-## PWA and Meta
+## PWA and Meta, and Mobile Friendly
 
-I was able to make the application into a progressive web app, and also add in the meta for the PWA, such as description, Twitter images (the huge ones that appear when you paste the link into discord)
+I was able to make the application into a progressive web app, and also add in the meta for the PWA, such as description, Twitter images (the huge ones that appear when you paste the link into discord). Since it's a progressive web app, I obviously
+need to make sure that it looks great on mobile, in which I used CSS breakpoints to do so.
 
 ## Font choice
 
