@@ -215,20 +215,21 @@ export default function Home(props: eventProps) {
         </div>
       </main>
 
-      <footer className="flex h-24 w-full items-center justify-center border-t bottom-0">
+      <footer className="flex flex-col h-24 w-full items-center justify-center border-t bottom-0 space-y-2">
         <a
-          className="flex flex-col items-center justify-center space-y-2"
+          className="flex flex items-center justify-center"
           href="https://zhehaizhang.com"
           target="_blank"
           rel="noopener noreferrer"
         >
           Made by Zhehai Zhang
-          <div className="flex flex-row">
-            <a href="https://github.com/fairnightzz/HTN-Frontend-2022" target="_blank" rel="noreferrer">
-              <GithubIcon className="w-8 h-8" />
-            </a>
-          </div>
         </a>
+        <div className="flex flex-row">
+          <a href="https://github.com/fairnightzz/HTN-Frontend-2022" target="_blank" rel="noreferrer">
+            <GithubIcon className="w-8 h-8" />
+          </a>
+        </div>
+
       </footer>
     </div>
   );
