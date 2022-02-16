@@ -33,7 +33,7 @@ code {
 }
 
 .nav {
-  @apply bg-gray-300 shadow p-1 flex flex-row justify-center content-center items-center;
+  @apply bg-gray-300 shadow p-1 flex flex-row justify-center content-center items-center w-screen;
   @apply dark:bg-gray-800 fixed w-screen h-20 z-20 overflow-x-auto overflow-y-auto;
 }
 

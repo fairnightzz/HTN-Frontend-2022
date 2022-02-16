@@ -3,28 +3,34 @@
 import React from 'react';
 import { TEvent } from 'types/event.types';
 import { formatAMPM } from 'utils/date';
-import { ExternalLinkIcon, ArrowsExpandIcon } from 'components/Icons';
+import { ExternalLinkIcon, ArrowsExpandIcon, UserIcon } from 'components/Icons';
 import Link from 'next/link';
 import styles from './EventCard.module.css';
 
 type EventCardProps = {
   event: TEvent;
+  loggedIn: boolean;
 }
 export default function EventCard(props : EventCardProps) {
-  const { event } = props;
+  const { event, loggedIn } = props;
   const startDate = new Date(event.start_time);
-  // const endDate = new Date(event.end_time)
+  const endDate = new Date(event.end_time);
+  const eventTypeDisplay = { workshop: 'Workshop', activity: 'Activity', tech_talk: 'Tech Talk' };
   return (
-    <div className={styles.eventCard}>
+    <div className={`${styles.eventCard} dark:bg-gray-900`}>
       <div className={styles.eventGlance}>
         <div className={styles.date}>
           {startDate.toDateString()}
         </div>
-        <div className={styles.date}>
+        <div className={styles.time}>
           {formatAMPM(startDate)}
+          {' '}
+          -
+          {' '}
+          {formatAMPM(endDate)}
         </div>
-        <div className="absolute top-4 left-4 subtitle">
-          {event.event_type}
+        <div className="absolute top-4 left-4 subtitle md:visible invisible">
+          {eventTypeDisplay[event.event_type]}
         </div>
       </div>
 
@@ -37,20 +43,21 @@ export default function EventCard(props : EventCardProps) {
           ...
         </p>
         <div className="flex flex-col absolute bottom-4 space-y-2">
-          <div className="flex flex-row space-x-2 items-center">
+          <div className="flex flex-row space-x-2 items-center md:visible invisible">
             {
             event.speakers.map((speaker) => (
               <React.Fragment key={speaker.name}>
-                <p className="font-semibold">
+                <p className="font-semibold text-xl">
                   Speaker
                   {event.speakers.length > 1 ? 's' : ''}
                   :
                 </p>
                 {
                   speaker.profile_pic
-                  && <img src={speaker.profile_pic} alt="speaker" className="rounded-full w-6 h-6 bg-red-100" />
+                    ? (<img src={speaker.profile_pic} alt="speaker" className="rounded-full w-10 h-10 bg-red-100" />)
+                    : (<UserIcon className="w-10 h-10" />)
                 }
-                <p className="regular">
+                <p className="text-xl">
                   {speaker.name}
                 </p>
               </React.Fragment>
@@ -58,16 +65,37 @@ export default function EventCard(props : EventCardProps) {
           }
           </div>
           <div className="flex flex-row space-x-2">
-            <a
-              href={event.private_url}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <button type="button" className="linkButton">
-                Join&nbsp;
-                <ExternalLinkIcon />
-              </button>
-            </a>
+            {
+              loggedIn === true
+                && (
+                  <a
+                    href={event.private_url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <button type="button" className="linkButton">
+                      Join&nbsp;
+                      <ExternalLinkIcon />
+                    </button>
+                  </a>
+
+                )
+            }
+            {
+              (loggedIn === false && event.public_url)
+                  && (
+                  <a
+                    href={event.public_url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <button type="button" className="linkButton">
+                      Join&nbsp;
+                      <ExternalLinkIcon />
+                    </button>
+                  </a>
+                  )
+            }
             <div>
               <Link href={`/event/${event.id}`}>
                 <button type="button" className="linkButton">
@@ -76,13 +104,18 @@ export default function EventCard(props : EventCardProps) {
                 </button>
               </Link>
             </div>
-            <div className="flex flex-row">
-              Related Events:
+            <div className="flex flex-row items-center space-x-2 ml-auto md:visible invisible">
+              <div className="title">
+                Related Events:
+              </div>
               {
                 event.related_events.map((id) => (
-                  <div key={id}>
-                    { id }
-                  </div>
+                  <Link key={id} href={`/event/${id}`}>
+                    <button type="button" className="bg-blue-600 text-white rounded-full text-center p-1 w-8 h-8">
+                      { id }
+                    </button>
+                  </Link>
+
                 ))
               }
             </div>

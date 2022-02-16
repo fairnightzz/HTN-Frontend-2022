@@ -15,7 +15,9 @@ export default function Home(props: eventProps) {
   const { events } = props;
   const [filteredEvents, setFilteredEvents] = useState(events);
   const eventTypes = ['workshop', 'activity', 'tech_talk'];
+  const eventTypeDisplay = ['Workshop', 'Activity', 'Tech Talk'];
   const sortTypes = ['Most Recent', 'Alphabetical', 'First'];
+  const [loggedIn, setLoggedIn] = useState(false);
 
   // eslint-disable-next-line no-unused-vars
   const [searchQuery, setSearchQuery] = useState('');
@@ -44,6 +46,14 @@ export default function Home(props: eventProps) {
     }
     const filter = new RegExp(sQuery as string, 'i');
     let newFilteredEvents = events.filter((el) => el.name.match(filter));
+
+    // Logged in filter
+    newFilteredEvents = newFilteredEvents.filter((el) => {
+      if (!loggedIn && el.permission && el.permission === 'private') {
+        return false;
+      }
+      return true;
+    });
 
     // Apply Filters
     let appliedFilters = 0;
@@ -132,11 +142,16 @@ export default function Home(props: eventProps) {
           console.log('persisted filters not found');
         }
       }
+      // eslint-disable-next-line no-undef
+      const isloggedIn = localStorage.getItem('htnLoggedIn');
+      if (isloggedIn === 'true') {
+        setLoggedIn(true);
+      }
     }
 
     setFilters(userFilters);
-    applyFilter(userFilters);
-  }, []);
+    applyFilter(userFilters, null);
+  }, [loggedIn]);
 
   return (
     <div className="">
@@ -148,16 +163,16 @@ export default function Home(props: eventProps) {
       <main className="flex w-full flex-col items-center">
         <div className="h-24" />
         <div className="relative">
-          <input type="search" onChange={onSearch} className="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-lg text-sm focus:outline-none" />
-          <SearchIcon className="text-gray-600 absolute right-0 top-0 mt-2 mr-2" />
+          <input type="search" onChange={onSearch} className="border-2 border-gray-300 bg-white dark:bg-gray-700 h-10 px-5 pr-10 rounded-lg text-sm focus:outline-none" />
+          <SearchIcon className="absolute right-0 top-0 mt-2 mr-2" />
         </div>
         <div className="relative flex flex-col lg:flex-row w-full justify-center my-8">
-          <div className="flex flex-row items-center justify-center space-x-8">
+          <div className="flex flex-row items-center justify-center space-x-8 px-4">
             <div className="title">
               Filters:
             </div>
             {
-              eventTypes.map((eventType, index) => (
+              eventTypeDisplay.map((eventType, index) => (
                 <label className="" htmlFor={eventType} key={eventType}>
                   <input checked={filters.filters[index]} onChange={() => updateEventFilter(index)} className="mr-2 leading-right " type="checkbox" id={eventType} />
                   <span className="title">
@@ -174,7 +189,7 @@ export default function Home(props: eventProps) {
             <div className="title">
               Sort By:
             </div>
-            <select onChange={updateSort} value={filters.sort} className="p-2 m-2 h-10 w-48 border rounded-md">
+            <select onChange={updateSort} value={filters.sort} className="p-2 m-2 h-10 w-48 border rounded-md dark:bg-gray-800">
               {
                 sortTypes.map((sortType) => (
                   <option value={sortType} key={sortType}>{sortType}</option>
@@ -187,7 +202,7 @@ export default function Home(props: eventProps) {
         <div className="flex flex-col space-y-4 items-center justify-center">
           {
             filteredEvents.map((event) => (
-              <EventCard key={event.id} event={event} />
+              <EventCard key={event.id} event={event} loggedIn={loggedIn} />
             ))
           }
         </div>
