@@ -163,7 +163,7 @@ export default function Home(props: eventProps) {
       <main className="flex w-full flex-col items-center">
         <div className="h-24" />
         <div className="relative">
-          <input type="search" onChange={onSearch} className="border-2 border-gray-300 bg-white dark:bg-gray-700 h-10 px-5 pr-10 rounded-lg text-sm focus:outline-none" />
+          <input type="search" onChange={onSearch} className="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-lg text-sm focus:outline-none" />
           <SearchIcon className="absolute right-0 top-0 mt-2 mr-2" />
         </div>
         <div className="relative flex flex-col lg:flex-row w-full justify-center my-8">

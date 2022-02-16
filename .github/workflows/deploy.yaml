@@ -19,6 +19,7 @@ jobs:
           KEY: ${{ secrets.SSHKEY }}
           script: |
             cd /var/www/HTN-Frontend-2022
+            git reset --hard
             git pull
             npm install
             npm run build

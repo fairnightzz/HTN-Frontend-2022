@@ -29,7 +29,7 @@ export default function EventCard(props : EventCardProps) {
           {' '}
           {formatAMPM(endDate)}
         </div>
-        <div className="absolute top-4 left-4 subtitle md:visible invisible">
+        <div className="absolute top-4 left-4 subtitle md:visible invisible w-5">
           {eventTypeDisplay[event.event_type]}
         </div>
       </div>
