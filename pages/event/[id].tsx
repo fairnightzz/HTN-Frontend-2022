@@ -130,7 +130,7 @@ export default function EventPage(props: EventProps) {
             {
                 event.related_events.map((id) => (
                   <Link key={id} href={`/event/${id}`}>
-                    <button type="button" className="bg-blue-600 text-white rounded-full text-center p-1 w-8 h-8">
+                    <button type="button" className="bg-blue-600 hover:bg-blue-700 text-white rounded-full text-center p-1 w-8 h-8">
                       { id }
                     </button>
                   </Link>

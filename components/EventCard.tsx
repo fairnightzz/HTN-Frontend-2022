@@ -38,9 +38,11 @@ export default function EventCard(props : EventCardProps) {
         <div className="heading">
           {event.name}
         </div>
-        <p className="text-ellipsis overflow-hidden regular">
-          {event.description?.substring(0, 200)}
-          ...
+        <p className="text-ellipsis overflow-hidden regular md:text-lg text-base">
+          {
+          (event.description?.length || 0) > 200 ? `${event.description?.substring(0, 200)}...`
+            : event.description
+        }
         </p>
         <div className="flex flex-col absolute bottom-4 space-y-2">
           <div className="flex flex-row space-x-2 items-center md:visible invisible">
@@ -114,7 +116,7 @@ export default function EventCard(props : EventCardProps) {
               {
                 event.related_events.map((id) => (
                   <Link key={id} href={`/event/${id}`}>
-                    <button type="button" className="bg-blue-600 text-white rounded-full text-center p-1 w-8 h-8">
+                    <button type="button" className="bg-blue-600 hover:bg-blue-700 text-white rounded-full text-center p-1 w-8 h-8">
                       { id }
                     </button>
                   </Link>

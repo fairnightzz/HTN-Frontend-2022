@@ -47,14 +47,14 @@ export default function Login() {
           <input type="password" onChange={(e) => updatePassword(e)} placeholder="Password" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
         </div>
 
-        <input type="submit" value="Log In" className="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8" />
+        <input type="submit" value="Log In" className="cursor-pointer bg-black text-white font-bold text-lg hover:bg-gray-700 dark:hover:bg-gray-900 p-2 mt-8" />
       </form>
       <div className="text-center pt-12 pb-12">
         <p>
           Don&apos;t have an account?
           {' '}
           <Link href="/login">
-            <div className="underline font-semibold">
+            <div className="underline font-semibold cursor-pointer">
               Sign Up
             </div>
           </Link>
